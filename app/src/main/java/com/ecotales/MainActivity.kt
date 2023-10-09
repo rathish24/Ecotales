@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        AppDatabase.getInstance(this)
+     //   val appDatabase = AppDatabase.getInstance(applicationContext)
+
 
     }
 

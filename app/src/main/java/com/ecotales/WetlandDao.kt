@@ -18,6 +18,6 @@ interface WetlandDao {
     @Delete
     suspend fun deleteWetland(wetland: WetlandEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(wetlands: List<WetlandEntity>)
 }

@@ -9,11 +9,11 @@ class WetlandViewmodel(application: Application):AndroidViewModel(application) {
     val allEntities: LiveData<List<WetlandEntity>>
 
     init {
-        val wetlandDao = AppDatabase.getInstance(application)?.wetlandDao
-
-        repository = wetlandDao?.let { WetlandRepository(it) }!!
+        val userDao = AppDatabase.getInstance(application).wetlandDao()
+        repository = WetlandRepository(userDao)
         allEntities = repository.wetlandEntitys
     }
+
 //
 //    fun insert(yourEntity: YourEntity) {
 //        repository.insert(yourEntity)

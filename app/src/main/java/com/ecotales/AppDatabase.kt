@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 @Database(entities = [WetlandEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract val wetlandDao: WetlandDao
+  //  abstract val wetlandDao:WetlandDao
+    abstract fun wetlandDao(): WetlandDao
 
     companion object {
         private const val PREFS_NAME = "database_prefs"
@@ -24,68 +25,61 @@ abstract class AppDatabase : RoomDatabase() {
         private var INSTANCE: AppDatabase? = null
 
 
-//        fun getInstance(context: Context): AppDatabase? {
-//            synchronized(this) {
-//                val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-//                val isDataPopulated = prefs.getBoolean(KEY_DATA_POPULATED, false)
-//
-//                var instance = INSTANCE
-//
-//                if (instance == null) {
-//                    instance = (if (!isDataPopulated) roomCallback else null)?.let {
-//                        Room.databaseBuilder(
-//                            context.applicationContext,
-//                            AppDatabase::class.java,
-//                            "AppDatabase"
-//                        )
-//                            .fallbackToDestructiveMigration()
-//                            .addCallback(it)
-//                            .build()
-//
-//
-//                    }
-//
-//
-//
-//                    INSTANCE = instance
-//                }
-//                return instance
-//            }
-//        }
 
-        fun getInstance(context: Context): AppDatabase? {
-            return INSTANCE ?: synchronized(this) {
-                val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        fun getInstance(context: Context): AppDatabase {
+            synchronized(this) {
 
-                val isDataPopulated = prefs.getBoolean(KEY_DATA_POPULATED, false)
+                var instance = INSTANCE
 
-                val instance = (if (!isDataPopulated) roomCallback else null)?.let {
-                    Room.databaseBuilder(
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "app_database"
+                        "AppDatabase"
                     )
-                        .addCallback(it)
+                        .fallbackToDestructiveMigration()
+                        .addCallback(roomCallback)
                         .build()
-                }
 
-                if (!isDataPopulated) {
-                    prefs.edit {
-                        putBoolean(KEY_DATA_POPULATED, true)
-                    }
+                    INSTANCE = instance
                 }
-
-                INSTANCE = instance
-                instance
+                return instance
             }
         }
+
+//        fun getInstance(context: Context): AppDatabase? {
+//            return INSTANCE ?: synchronized(this) {
+//                val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+//
+//                val isDataPopulated = prefs.getBoolean(KEY_DATA_POPULATED, false)
+//
+//                val instance = (if (!isDataPopulated) roomCallback else null)?.let {
+//                    Room.databaseBuilder(
+//                        context.applicationContext,
+//                        AppDatabase::class.java,
+//                        "app_database"
+//                    )
+//                        .addCallback(it)
+//                        .build()
+//                }
+//
+//                if (!isDataPopulated) {
+//                    prefs.edit {
+//                        putBoolean(KEY_DATA_POPULATED, true)
+//                    }
+//                }
+//
+//                INSTANCE = instance
+//                instance
+//            }
+  //      }
 
 
         private val roomCallback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
                 // Prepopulate data when the database is created
-
+print("roomCallback called :::::")
                 val wetlands = listOf(
 //
 
@@ -109,9 +103,11 @@ abstract class AppDatabase : RoomDatabase() {
                     )
 
                 )
-                INSTANCE?.let { database ->
+                INSTANCE?.let { _ ->
+                    val wetlandDao = INSTANCE?.wetlandDao()
+
                     GlobalScope.launch {
-                        database.wetlandDao.insertAll(wetlands)
+                        wetlandDao?.insertAll(wetlands)
                     }
                 }
             }
