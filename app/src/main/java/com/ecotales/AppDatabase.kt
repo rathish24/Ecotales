@@ -11,11 +11,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [WetlandEntity::class], version = 1, exportSchema = false)
+@Database(entities = [WetlandEntity::class,LogEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
   //  abstract val wetlandDao:WetlandDao
     abstract fun wetlandDao(): WetlandDao
+    abstract fun logDao(): LogDao
 
     companion object {
         private const val PREFS_NAME = "database_prefs"
@@ -84,7 +85,7 @@ print("roomCallback called :::::")
 //
 
                     WetlandEntity(
-                        -1,
+                        1,
                         "Karaivetti Birds Sanctuary",
                         false,
                         "Ariyalur",
@@ -93,7 +94,7 @@ print("roomCallback called :::::")
                         type = "Costal Land"
                     ),
                     WetlandEntity(
-                        -1,
+                        2,
                         "Karaivetti Birds Sanctuary",
                         false,
                         "Ariyalur",

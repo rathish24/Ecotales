@@ -1,5 +1,6 @@
 package com.ecotales
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import java.util.concurrent.Flow
 
@@ -8,10 +9,10 @@ import java.util.concurrent.Flow
 interface LogDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addNote(note: LogEntity)
+    suspend fun insertLog(note: LogEntity)
 
-    @Query("SELECT * FROM notes ORDER BY dateAdded DESC")
-    fun getNotes(): MutableList<LogEntity>
+    @Query("SELECT * FROM LOG_TABLE ")
+    fun getLogs(): LiveData<List<LogEntity>>
 
     @Update
     suspend fun updateNote(note: LogEntity)
