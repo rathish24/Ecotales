@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 interface OnClickListener {
     fun onClick(position: Int, model: WetlandEntity?)
@@ -20,6 +21,8 @@ class WetlandAdapter(private val items: List<WetlandEntity>, private val onItemC
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemName: TextView = itemView.findViewById(R.id.title)
         val imageView: ImageView = itemView.findViewById(R.id.header_image)
+        val location: TextView = itemView.findViewById(R.id.location)
+        val description: TextView = itemView.findViewById(R.id.description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -32,6 +35,15 @@ class WetlandAdapter(private val items: List<WetlandEntity>, private val onItemC
         val item = items[position]
         print("item::::: "+item)
         holder.itemName.text = item.name
+        holder.location.text = item.district
+        holder.description.text = item.description
+        Glide.with(holder.itemView.getContext())
+            .load(item.image)
+            .centerCrop()
+            .placeholder(R.drawable.placeholder)
+            .thumbnail(0.5f)
+            .into(holder.imageView);
+
         holder.itemView.setOnClickListener {
             onItemClick(item)
         }

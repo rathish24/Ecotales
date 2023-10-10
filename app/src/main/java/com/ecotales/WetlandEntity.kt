@@ -20,5 +20,9 @@ data class WetlandEntity(
     @ColumnInfo(name = "latitude")
     val latitude: Double,
     @ColumnInfo(name = "longitude")
-    val longitude: Double
+    val longitude: Double,
+    @ColumnInfo(name = "description")
+    val description: String,
+    @ColumnInfo(name = "image")
+val image: String
 )

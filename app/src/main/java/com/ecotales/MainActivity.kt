@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
         fab_clock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_clock);
         fab_anticlock = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_rotate_anticlock);
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
 
             if (isOpen) {
                 binding.textviewMail.visibility = View.INVISIBLE
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
 
             binding.fab2.setOnClickListener(View.OnClickListener {
-
+                isOpen = false
                 val intent = Intent(this, AddWetLog::class.java)
                 startActivity(intent)
 

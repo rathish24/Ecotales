@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "LOG_TABLE")
 data class LogEntity(
-    @PrimaryKey(autoGenerate = false)
-    val logId :Int,
+    @PrimaryKey(autoGenerate = true)
+    val logId :Int = 0,
     @ColumnInfo(name = "log_place")
     val logPlace:String,
     @ColumnInfo(name = "log_district")

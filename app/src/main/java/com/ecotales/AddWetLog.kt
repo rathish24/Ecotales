@@ -25,10 +25,13 @@ class AddWetLog:AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener(View.OnClickListener {
 
-            var observations  = binding.tfObservations.toString()
-            var district = binding.tfDistrict.toString()
-            var placeVisisted = binding.tfPlaceVisited.toString()
+            var observations  = binding.etRegion.text.toString()
+            var district = binding.etRegion.text.toString()
+            var placeVisisted = binding.etRegion.text.toString()
 
+            println("observations:::: "+observations)
+            println("district:::: "+district)
+            println("placeVisisted:::: "+placeVisisted)
             var logEntity = LogEntity(0,placeVisisted,district,observations)
             viewModel.insert(logEntity)
             Toast.makeText(

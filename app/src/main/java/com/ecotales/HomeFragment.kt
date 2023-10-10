@@ -68,12 +68,12 @@ class HomeFragment : Fragment() {
             viewModel.allEntities.observe(viewLifecycleOwner, Observer { entities ->
                 // Update UI based on the changes in the database
                 // entities is the updated list of YourEntity objects
-                println("entites:::::::"+entities)
+                println("entites::home:::::"+entities)
                 itemAdapter = WetlandAdapter(entities) { selectedItem ->
                     // Handle item click, e.g., open a new activity
-                    val intent = Intent(requireContext(), Detail::class.java)
-                    intent.putExtra("title", selectedItem.name)
-                    startActivity(intent)
+//                    val intent = Intent(requireContext(), Detail::class.java)
+//                    intent.putExtra("title", selectedItem.name)
+//                    startActivity(intent)
                 }
 
                 recyclerView.adapter = itemAdapter

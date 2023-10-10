@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecotales.databinding.FragmentFirstBinding
@@ -47,6 +48,7 @@ class LogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(LogViewmodel::class.java)
         val appDataBase = AppDatabase.getInstance(requireContext())
         if (appDataBase != null) {
             //     wetLandList = appDataBase.wetlandDao.getWetland()

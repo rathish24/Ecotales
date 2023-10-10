@@ -2,67 +2,91 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
-    android:background="#E0F7FA"
+    android:background="#E9FAE0"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="4dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="4dp">
 
-            <ImageView
-                android:id="@+id/header_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/place"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="match_parent"
+                android:id="@+id/tvplace"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Place"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Place:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_image" />
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/place"-->
+            <!--                style="@style/TextAppearance.MaterialComponents.Headline6"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="4dp"-->
+            <!--                android:text="Placedddddd"-->
+            <!--               -->
+            <!--              -->
+            <!--                app:layout_constraintTop_toBottomOf="@id/header_image" />-->
+
+            <TextView
+                android:id="@+id/tvdistrict"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="District:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvplace" />
 
             <TextView
                 android:id="@+id/district"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="I'm a subhead"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="12dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="@+id/tvdistrict"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/place" />
+                app:layout_constraintStart_toEndOf="@+id/tvdistrict"
+                app:layout_constraintTop_toTopOf="@+id/tvdistrict" />
 
             <TextView
                 android:id="@+id/observation"
                 style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="I'm a supporting text. Very Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                android:gravity="start"
+                android:text="sdsds"
+                android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/district" />
+                app:layout_constraintTop_toBottomOf="@id/tvdistrict" />
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="12dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="@+id/tvplace"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvplace"
+                app:layout_constraintTop_toTopOf="@+id/tvplace" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
